@@ -21,6 +21,11 @@ public:
 
     bool allocate();
 
+    DeviceType device_type() const { return device_type_; }
+    void *ptr() const { return ptr_; }
+
+    size_t byte_size() const { return byte_size_; }
+    void copy_from(const Buffer *buffer) const;
     void copy_from(const Buffer &buffer) const;
 };
 

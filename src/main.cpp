@@ -11,6 +11,8 @@ int main(int argc, char** argv) {
     Buffer cuda_buffer(10, cuda_allocator);
     buffer.allocate();
     cuda_buffer.allocate();
+    buffer.copy_from(cuda_buffer);
+    cuda_buffer.copy_from(buffer);
     std::cout << "Hello, World!" << std::endl;
     return 0;
 }
