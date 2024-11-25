@@ -7,6 +7,8 @@
 #include <cstdlib>
 #include <cuda_runtime.h>
 #include <iostream>
+#include <cassert>
+#include <memory>
 
 #define CHECK_EQ(x, y) assert((x) == (y))
 

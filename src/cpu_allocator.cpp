@@ -1,6 +1,9 @@
 #include "allocator.h"
 
 
+CPU_Allocator::CPU_Allocator() : Allocator(DeviceType::kDeviceCPU) {
+}
+
 void *CPU_Allocator::allocate(size_t byte_size) const
 {
     if (!byte_size)
@@ -12,7 +15,9 @@ void *CPU_Allocator::allocate(size_t byte_size) const
 }
 
 void CPU_Allocator::release(void* ptr) const {
-  // 实现代码
+    if (ptr) {
+        free(ptr);
+    }
 }
 
 

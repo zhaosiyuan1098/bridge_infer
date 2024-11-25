@@ -1,6 +1,16 @@
 #include <iostream>
+#include"common.h"
+#include"allocator.h"
+#include"buffer.h"
 
 int main(int argc, char** argv) {
-    std::cout << "hello world!" << std::endl;
+
+    std::shared_ptr<Allocator> allocator = std::make_shared<CPU_Allocator>();
+    std::shared_ptr<Allocator> cuda_allocator = std::make_shared<CUDA_Allocator>();
+    Buffer buffer(10, allocator);
+    Buffer cuda_buffer(10, cuda_allocator);
+    buffer.allocate();
+    cuda_buffer.allocate();
+    std::cout << "Hello, World!" << std::endl;
     return 0;
 }

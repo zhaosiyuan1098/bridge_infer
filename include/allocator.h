@@ -57,4 +57,5 @@ class CUDA_Allocator : public Allocator {
   mutable std::map<int, std::vector<CudaMemoryBuffer>> cuda_buffers_map_;
 };
 
+
 #endif
