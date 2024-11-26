@@ -1,15 +1,34 @@
 add_rules("mode.debug", "mode.release")
 
--- Add CUDA support
-add_requires("cuda")
+-- 添加 CUDA 和 Google Test 支持
+add_requires("cuda", "gtest")
 
+-- 定义静态库 target
+target("libinfer")
+    set_kind("shared")
+    set_languages("c++20")
+    add_files("src/*.cpp", {exclude = "src/main.cpp"})  -- 排除 main.cpp
+    add_includedirs("include")
+    add_packages("cuda")
+
+-- 定义 infer 可执行文件 target
 target("infer")
     set_kind("binary")
     set_languages("c++20")
-    add_files("src/*.cpp")
-    -- add_files("src/*.cu")  -- Add CUDA source files
+    add_files("src/main.cpp")
     add_includedirs("include")
+    add_deps("libinfer")
     add_packages("cuda")
+
+-- 定义 tests 可执行文件 target
+target("tests")
+    set_kind("binary")
+    set_languages("c++20")
+    add_files("test/*.cpp")
+    add_includedirs("include")
+    add_deps("libinfer")
+    add_packages("gtest", "cuda")
+    add_links("gtest", "pthread", "cuda")
 --
 -- If you want to known more usage about xmake, please see https://xmake.io
 --

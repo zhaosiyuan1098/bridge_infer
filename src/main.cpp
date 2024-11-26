@@ -1,6 +1,8 @@
 #include <iostream>
 #include"common.h"
 #include"allocator.h"
+#include"cpu_allocator.h"
+#include"cuda_allocator.h"
 #include"buffer.h"
 
 int main(int argc, char** argv) {

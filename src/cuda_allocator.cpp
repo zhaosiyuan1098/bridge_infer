@@ -1,4 +1,4 @@
-#include "allocator.h"
+#include "cuda_allocator.h"
 
 CUDA_Allocator::CUDA_Allocator() : Allocator(DeviceType::kDeviceCUDA) {}
 

@@ -1,4 +1,4 @@
-#include "allocator.h"
+#include "cpu_allocator.h"
 
 
 CPU_Allocator::CPU_Allocator() : Allocator(DeviceType::kDeviceCPU) {
