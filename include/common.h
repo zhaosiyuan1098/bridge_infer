@@ -14,13 +14,12 @@
 
 #define CHECK_EQ(x, y) assert((x) == (y))
 #define CHECK_NE(x, y) assert((x) != (y))
-#define CHECK(cond) \
-    do { \
-        if (!(cond)) { \
-            std::cerr << "Check failed: " << #cond << " in file " << __FILE__ << " at line " << __LINE__ << std::endl; \
-            std::abort(); \
-        } \
-    } while (0)
+#define CHECK(condition)                             \
+    if (!(condition))                                \
+    {                                                \
+        std::cerr << "Check failed: " << #condition; \
+        std::abort();                                \
+    }
 
 enum class DeviceType : uint8_t
 {
