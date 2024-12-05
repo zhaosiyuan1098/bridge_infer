@@ -2,6 +2,7 @@
 #include <gtest/gtest.h>
 
 int main(int argc, char* argv[]) {
+  std::cout<<"hello,asdasdworld"<<std::endl;
   testing::InitGoogleTest(&argc, argv);
   google::InitGoogleLogging("Kuiper");
   FLAGS_log_dir = "./log/";
