@@ -5,11 +5,14 @@
 #include <model/config.h>
 #include <op/matmul.h>
 #include <sys/mman.h>
+#include <filesystem>
 #include "../source/op/kernels/kernels_interface.h"
 #include "base/buffer.h"
 
 TEST(test_load, load_model_config) {
-  std::string model_path = "./tmp/test.bin";
+  std::string current_path = std::filesystem::current_path().string();
+  std::string absolute_path = current_path.substr(0, current_path.find("/build"));
+  std::string model_path = absolute_path + "/temp/test.bin";
   int32_t fd = open(model_path.data(), O_RDONLY);
   ASSERT_NE(fd, -1);
 
@@ -24,7 +27,9 @@ TEST(test_load, load_model_config) {
 }
 
 TEST(test_load, load_model_weight) {
-  std::string model_path = "./tmp/test.bin";
+  std::string current_path = std::filesystem::current_path().string();
+  std::string absolute_path = current_path.substr(0, current_path.find("/build"));
+  std::string model_path = absolute_path + "/temp/test.bin";
   int32_t fd = open(model_path.data(), O_RDONLY);
   ASSERT_NE(fd, -1);
 
@@ -47,7 +52,11 @@ TEST(test_load, load_model_weight) {
 }
 
 TEST(test_load, create_matmul) {
-  std::string model_path = "./tmp/test.bin";
+  std::string current_path = std::filesystem::current_path().string();
+  std::string absolute_path = current_path.substr(0, current_path.find("/build"));
+  std::string model_path = absolute_path + "/temp/test.bin";
+  std::cout<<model_path<<std::endl;
+  // std::string model_path = "/home/siyuan/code/infer/tmp/test.bin";
   int32_t fd = open(model_path.data(), O_RDONLY);
   ASSERT_NE(fd, -1);
 
