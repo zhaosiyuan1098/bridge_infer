@@ -85,7 +85,7 @@ TEST(test_buffer, cuda_memcpy3) {
   Buffer cu_buffer1(size * sizeof(float), alloc_cu);
   Buffer cu_buffer2(size * sizeof(float), alloc_cu);
 
-  set_value_cu((float*)cu_buffer2.ptr(), size);
+  set_value_cu((float*)cu_buffer2.ptr(), size,1);
   // cu to cu
   ASSERT_EQ(cu_buffer1.device_type(), DeviceType::kDeviceCUDA);
   ASSERT_EQ(cu_buffer2.device_type(), DeviceType::kDeviceCUDA);
@@ -112,7 +112,7 @@ TEST(test_buffer, cuda_memcpy4) {
   ASSERT_EQ(cu_buffer2.device_type(), DeviceType::kDeviceCPU);
 
   // cu to cpu
-  set_value_cu((float*)cu_buffer1.ptr(), size);
+  set_value_cu((float*)cu_buffer1.ptr(), size,1);
   cu_buffer2.copy_from(cu_buffer1);
 
   float* ptr2 = (float*)cu_buffer2.ptr();

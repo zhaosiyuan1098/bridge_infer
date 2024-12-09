@@ -34,7 +34,7 @@ target("libinfer")
     add_packages("cuda","glog", "sentencepiece","armadillo")
     add_links("pthread")  -- 添加 pthread 链接
     add_syslinks("pthread", "dl", "rt") -- 添加必要的系统库链接
-
+    set_policy("build.cuda.devlink", true) 
 -- 定义 infer 可执行文件 target
 target("infer")
     set_kind("binary")
@@ -43,6 +43,15 @@ target("infer")
     
     add_deps("libinfer")
     add_packages("cuda")
+    add_links("pthread")
+
+target("inferdemo")
+    set_kind("binary")
+    set_languages("c++17")
+    add_files("demo/main.cpp")
+    
+    add_deps("libinfer")
+    add_packages("cuda","glog","armadillo", "sentencepiece")
     add_links("pthread")
 
 
@@ -56,8 +65,6 @@ target("test")
     add_files("test/test_op/*.cpp")
     add_files("test/test_tensor/*.cpp")
     add_files("test/optimized/*.cpp")
-    -- add_files("source/op/kernels/cpu/*.cpp")
-    -- add_files("source/op/kernels/cuda/*.cu")
     add_includedirs("test")
     add_deps("libinfer")
     add_packages("gtest", "cuda","glog", "sentencepiece","armadillo")
